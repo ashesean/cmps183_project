@@ -1,0 +1,69 @@
+{{extend 'layout.html'}}
+
+{{user_id = auth.user_id}}
+
+<div>
+    <a>
+        <div>
+            <p id="title_nearby_stylists" contenteditable="false">Stylister</p>
+        </div>
+    </a>
+
+    {{if auth.user_id is None:}}
+        <div id="login_button">
+            {{=A('Home', _class='btn btn-primary', _href=URL('default', 'index'))}}
+            {{=A('Register', _class='btn btn-primary', _href=URL('default', 'user', args=['register']))}}
+            {{=A('Sign In', _class='btn btn-primary', _href=URL('default', 'user', args=['login']))}}
+        </div>
+    {{else:}}
+        <div id="my_page_button">
+            {{=A('Home', _class='btn btn-primary', _href=URL('default', 'index'))}}
+            {{=A('My Stylist Profile', _class='btn btn-primary', _href=URL('default', 'stylist_page', args=[user_id]))}}
+        </div>
+    {{pass}}
+
+    <br><br>
+    <hr style="border:1px solid #337ab7;">
+</div>
+
+<br><br>
+
+{{i = 0}}
+
+{{for stylist in stylists:}}
+    <div id="stylist_box">
+        <p id="nearby_stylist_name">{{=A(stylist.full_name, _href=URL('default', 'stylist_page', args=[stylist.user_id]))}}</p>
+        {{if stylist.salon is None:}}
+            <p id="nearby_stylist_salon">Independent</p>
+        {{else:}}
+            <p id="nearby_stylist_salon">@ {{=stylist.salon}}</p>
+        {{pass}}
+        <p id="nearby_stylist_address">{{=stylist.street_address}}</p>
+        <p id="nearby_stylist_city_state">{{=stylist.city}}, {{=stylist.state_acronym}}</p>
+        <div id="profile_pic_box_small">
+            <img src="{{=URL('default', 'download', args=pics[i].profile_pic)}}" />
+        </div>
+    </div>
+    {{i += 1}}
+    <br>
+{{pass}}
+
+<script>
+    var logoHeight = $('#profile_pic_box img').height();
+    if (logoHeight < 225) {
+        var margintop = (225 - logoHeight) / 2;
+        $('#profile_pic_box img').css('margin-top', margintop);
+    }
+</script>
+
+<script>
+    function go_home() {
+        var url = window.location.href;
+
+        url = url.slice(0, 36);
+        url = url + "index";
+        window.location = url
+    }
+</script>
+
+

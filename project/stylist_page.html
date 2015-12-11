@@ -1,0 +1,330 @@
+{{extend 'layout.html'}}
+
+{{page_user_id = request.args(0)}}
+{{user_id = auth.user_id}}
+
+<div>
+    <a>
+        <div>
+            <p id="title_nearby_stylists" contenteditable="false">Stylister</p>
+        </div>
+    </a>
+
+    {{if auth.user_id is None:}}
+        <div id="login_button">
+            {{=A('Home', _class='btn btn-primary', _href=URL('default', 'index'))}}
+            {{=A('Register', _class='btn btn-primary', _href=URL('default', 'user', args=['register']))}}
+            {{=A('Sign In', _class='btn btn-primary', _href=URL('default', 'user', args=['login']))}}
+        </div>
+    {{else:}}
+        <div id="my_page_button">
+            {{=A('Home', _class='btn btn-primary', _href=URL('default', 'index'))}}
+            {{=A('My Stylist Profile', _class='btn btn-primary', _href=URL('default', 'stylist_page', args=[user_id]))}}
+        </div>
+    {{pass}}
+
+    <br><br>
+    <hr style="border:1px solid #337ab7;">
+</div>
+
+<br><br>
+
+
+
+
+
+
+{{if auth.user_id is None or int(auth.user_id) is not int(page_user_id):}}
+<div id="stylist_info_box">
+    <div id="profile_pic_box">
+        <img src="{{=URL('default', 'download', args=profile_pic.profile_pic)}}" />
+    </div>
+    <p id="full_name">{{=stylist.full_name}}</p>
+    <p id="salon">{{=stylist.salon}}</p>
+    <p id="address">{{=stylist.street_address}}</p><br>
+    <p id="city">{{=stylist.city}}</p><br>
+    <p id="state">{{=stylist.state_acronym}}</p><br><br>
+    <p id="phone_num">{{=stylist.phone_num}}</p><br>
+    <textarea id="bio" rows="10" cols="45" readonly="true">{{=stylist.bio}}</textarea>
+    <div id="go_to_gallery">
+        {{=A('See My Gallery', _class='btn btn-primary', _href=URL('default', 'gallery_page', args=[stylist.user_id]))}}
+    </div>
+    <div id="prepare_email">
+        {{=A('Email Me', _class='btn btn-primary', _href=URL('default', 'prepare_an_email', args=[stylist.user_id]))}}
+    </div>
+    <div id="add_review">
+        {{=A('Write a Review', _class='btn btn-primary', _href=URL('default', 'write_review', args=[stylist.user_id]))}}
+    </div>
+</div>
+
+
+<div id="deals_box">
+    <p id="deals_title">Deals</p>
+    <hr style="border:1px dotted #b7283d;">
+    <textarea id="deals" rows="10" cols="45" readonly="true">{{=stylist.deals}}</textarea>
+    <hr style="border:1px dotted #b7283d;">
+</div>
+
+
+<div id="business_hours_box">
+    <p id="hours_title">Business Hours</p>
+    <hr style="border:1px dotted #337ab7;">
+    <div id="hours">
+        Mon:&nbsp;
+        <input type="time" id="mon_start" value="{{=business_hours.mon_start}}" readonly="true">
+        &nbsp; - &nbsp;
+        <input type="time" id="mon_finish" value="{{=business_hours.mon_finish}}" readonly="true">
+        <br>
+        Tue:&nbsp;&nbsp;
+        <input type="time" id="tues_start" value="{{=business_hours.tues_start}}" readonly="true">
+        &nbsp; - &nbsp;
+        <input type="time" id="tues_finish" value="{{=business_hours.tues_finish}} "readonly="true">
+        <br>
+        Wed:&nbsp;
+        <input type="time" id="wed_start" value="{{=business_hours.wed_start}} "readonly="true">
+        &nbsp; - &nbsp;
+        <input type="time" id="wed_finish" value="{{=business_hours.wed_finish}} "readonly="true">
+        <br>
+        Thu:&nbsp;&nbsp;
+        <input type="time" id="thurs_start" value="{{=business_hours.thurs_start}} "readonly="true">
+        &nbsp; - &nbsp;
+        <input type="time" id="thurs_finish" value="{{=business_hours.thurs_finish}}" readonly="true">
+        <br>
+        Fri:&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="time" id="fri_start" value="{{=business_hours.fri_start}}" readonly="true">
+        &nbsp; - &nbsp;
+        <input type="time" id="fri_finish" value="{{=business_hours.fri_finish}}" readonly="true">
+        <br>
+        Sat:&nbsp;&nbsp;&nbsp;
+        <input type="time" id="sat_start" value="{{=business_hours.sat_start}}" readonly="true">
+        &nbsp; - &nbsp;
+        <input type="time" id="sat_finish" value="{{=business_hours.sat_finish}}" readonly="true">
+        <br>
+        Sun:&nbsp;&nbsp;
+        <input type="time" id="sun_start" value="{{=business_hours.sun_start}}" readonly="true">
+        &nbsp; - &nbsp;
+        <input type="time" id="sun_finish" value="{{=business_hours.sun_finish}}" readonly="true">
+        <br>
+    </div>
+
+    <br><br><br>
+    <hr style="border:1px dotted #337ab7;">
+    <br><br>
+</div>
+
+{{if has_reviews:}}
+    <br><br>
+    <div id="reviews_box">
+        <p id="reviews_title">Reviews</p>
+        <hr style="border:1px solid #000000;">
+        {{for review in reviews:}}
+            <div id="review">
+                <p id="review_content" style="font-style:italic; font-size:18px">{{=review.review}}</p>
+                <p>by {{=review.author}}</p>
+                <hr style="border:1px dotted #337ab7;">
+            </div>
+        {{pass}}
+    </div>
+{{pass}}
+
+{{else:}}
+<div id="stylist_info_box">
+    <div id="profile_pic_box">
+        <img src="{{=URL('default', 'download', args=profile_pic.profile_pic)}}" />
+    </div>
+    <p id="full_name" contenteditable="true">{{=stylist.full_name}}</p>
+    <p id="salon" contenteditable="true">{{=stylist.salon}}</p>
+    <p id="address" contenteditable="true">{{=stylist.street_address}}</p><br>
+    <p id="city" contenteditable="true">{{=stylist.city}}</p><br>
+    <p id="state" contenteditable="true">{{=stylist.state_acronym}}</p><br><br>
+    <p id="phone_num" contenteditable="true">{{=stylist.phone_num}}</p><br>
+    <textarea id="bio" rows="10" cols="45">{{=stylist.bio}}</textarea>
+    <div id="go_to_gallery">
+        {{=A('See My Gallery', _class='btn btn-primary', _href=URL('default', 'gallery_page', args=[stylist.user_id]))}}
+    </div>
+</div>
+
+
+<div id="deals_box">
+    <p id="deals_title">Deals</p>
+    <hr style="border:1px dotted #b7283d;">
+    <textarea id="deals" rows="10" cols="45">{{=stylist.deals}}</textarea>
+    <hr style="border:1px dotted #b7283d;">
+</div>
+
+
+<div id="business_hours_box">
+    <p id="hours_title">Business Hours</p>
+    <hr style="border:1px dotted #337ab7;">
+    <div id="hours">
+        Mon:&nbsp;
+        <input type="time" id="mon_start" value="{{=business_hours.mon_start}}">
+        &nbsp; - &nbsp;
+        <input type="time" id="mon_finish" value="{{=business_hours.mon_finish}}">
+        <br>
+        Tue:&nbsp;&nbsp;
+        <input type="time" id="tues_start" value="{{=business_hours.tues_start}}">
+        &nbsp; - &nbsp;
+        <input type="time" id="tues_finish" value="{{=business_hours.tues_finish}}">
+        <br>
+        Wed:&nbsp;
+        <input type="time" id="wed_start" value="{{=business_hours.wed_start}}">
+        &nbsp; - &nbsp;
+        <input type="time" id="wed_finish" value="{{=business_hours.wed_finish}}">
+        <br>
+        Thu:&nbsp;&nbsp;
+        <input type="time" id="thurs_start" value="{{=business_hours.thurs_start}}">
+        &nbsp; - &nbsp;
+        <input type="time" id="thurs_finish" value="{{=business_hours.thurs_finish}}">
+        <br>
+        Fri:&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="time" id="fri_start" value="{{=business_hours.fri_start}}">
+        &nbsp; - &nbsp;
+        <input type="time" id="fri_finish" value="{{=business_hours.fri_finish}}">
+        <br>
+        Sat:&nbsp;&nbsp;&nbsp;
+        <input type="time" id="sat_start" value="{{=business_hours.sat_start}}">
+        &nbsp; - &nbsp;
+        <input type="time" id="sat_finish" value="{{=business_hours.sat_finish}}">
+        <br>
+        Sun:&nbsp;&nbsp;
+        <input type="time" id="sun_start" value="{{=business_hours.sun_start}}">
+        &nbsp; - &nbsp;
+        <input type="time" id="sun_finish" value="{{=business_hours.sun_finish}}">
+        <br>
+    </div>
+
+    <button id="hours_button" onClick="submitHours({{=business_hours.stylist_id}})">Submit</button><br><br>
+    <hr style="border:1px dotted #337ab7;">
+    <br><br>
+</div>
+
+{{if has_reviews:}}
+    <br><br>
+    <div id="reviews_box">
+        <p id="reviews_title">Reviews</p>
+        <hr style="border:1px solid #000000;">
+        {{for review in reviews:}}
+            <div id="review">
+                <p id="review_content" style="font-style:italic; font-size:18px">{{=review.review}}</p>
+                <p>by {{=review.author}}</p>
+                <hr style="border:1px dotted #337ab7;">
+            </div>
+        {{pass}}
+    </div>
+{{pass}}
+
+
+{{pass}}
+
+<p hidden id="user_id">{{=auth.user_id}}</p>
+
+
+<script>
+    var stylist_id = {{=stylist.user_id}}
+
+    function periodic_send() {
+        var full_name = document.getElementById("full_name").innerHTML;
+        var salon = document.getElementById("salon").innerHTML;
+        var address = document.getElementById("address").innerHTML;
+        var city = document.getElementById("city").innerHTML;
+        var state = document.getElementById("state").innerHTML;
+        var phone_num = document.getElementById("phone_num").innerHTML;
+        var bio = document.getElementById("bio").value;
+        var deals = document.getElementById("deals").value;
+
+        var url = window.location.href;
+
+        if (document.getElementById("user_id").innerHTML == stylist_id) {
+            $.ajax("{{=URL('default', 'update_stylist')}}",
+                {
+                    data: {
+                        stylist_id: stylist_id,
+                        full_name: full_name,
+                        salon: salon,
+                        address: address,
+                        city: city,
+                        state: state,
+                        phone_num: phone_num,
+                        bio: bio,
+                        deals: deals
+                    },
+                    method: 'POST',
+                    success: function() {},
+                    error: function() {}
+                }
+
+        );
+        }
+    }
+
+    setInterval(periodic_send, 5000);
+</script>
+
+<script>
+    function submitHours(stylist_id) {
+        var mon_start_t = document.getElementById("mon_start").value;
+        var mon_finish_t = document.getElementById("mon_finish").value;
+        var tues_start_t = document.getElementById("tues_start").value;
+        var tues_finish_t = document.getElementById("tues_finish").value;
+        var wed_start_t = document.getElementById("wed_start").value;
+        var wed_finish_t = document.getElementById("wed_finish").value;
+        var thurs_start_t = document.getElementById("thurs_start").value;
+        var thurs_finish_t = document.getElementById("thurs_finish").value;
+        var fri_start_t = document.getElementById("fri_start").value;
+        var fri_finish_t = document.getElementById("fri_finish").value;
+        var sat_start_t = document.getElementById("sat_start").value;
+        var sat_finish_t = document.getElementById("sat_finish").value;
+        var sun_start_t = document.getElementById("sun_start").value;
+        var sun_finish_t = document.getElementById("sun_finish").value;
+
+        $.ajax("{{=URL('default', 'update_time')}}",
+                {
+                    data: {
+                        stylist_id: stylist_id,
+                        mon_start: mon_start_t,
+                        mon_finish: mon_finish_t,
+                        tues_start: tues_start_t,
+                        tues_finish: tues_finish_t,
+                        wed_start: wed_start_t,
+                        wed_finish: wed_finish_t,
+                        thurs_start: thurs_start_t,
+                        thurs_finish: thurs_finish_t,
+                        fri_start: fri_start_t,
+                        fri_finish: fri_finish_t,
+                        sat_start: sat_start_t,
+                        sat_finish: sat_finish_t,
+                        sun_start: sun_start_t,
+                        sun_finish: sun_finish_t
+                    },
+                    method: 'POST',
+                    success: function() {},
+                    error: function() {}
+                }
+
+        );
+    }
+</script>
+
+<script>
+    function go_home() {
+        var url = window.location.href;
+        url = url.slice(0, 36);
+        url = url + "index";
+        window.location = url
+    }
+</script>
+
+<script>
+    var logoHeight = $('#profile_pic_box img').height();
+    if (logoHeight < 225) {
+        var margintop = (225 - logoHeight) / 2;
+        $('#profile_pic_box img').css('margin-top', margintop);
+    }
+</script>
+
+
+
+
+
+<br><br><br>

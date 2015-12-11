@@ -1,0 +1,317 @@
+/* line 1, ../sass/_main.scss */
+.colorful {
+  color: #bb8833;
+}
+
+#title {
+  position: absolute;
+  top: 37%;
+  left: 8%;
+  margin-top: -50px;
+  margin-left: -50px;
+  width: 100px;
+  height: 100px;
+  font-size: 350%;
+  color: #a51810;
+  font-style: oblique;
+  font-weight: bold;
+}
+
+#title_nearby_stylists {
+  position: absolute;
+  top: inherit;
+  left: 8%;
+  margin-top: -20px;
+  margin-left: -50px;
+  width: 100px;
+  height: 100px;
+  font-size: 350%;
+  color: #a51810;
+  font-style: oblique;
+  font-weight: bold;
+}
+
+#login_button {
+  position: absolute;
+  top: 0;
+  right: 2%;
+}
+
+#my_page_button {
+  position: absolute;
+  top: 0;
+  right: 2%;
+}
+
+#search_prompt {
+  position: absolute;
+  top: 170%;
+  left: 18%;
+  color: #2a5185;
+  font-size: 400%;
+  font-style: italic;
+}
+
+#city_input {
+  position: absolute;
+  top: 320%;
+  left: 35%;
+  width: 200px;
+}
+
+#state_select {
+  position: absolute;
+  top: 323%;
+  left: 51%;
+  font-size:2em;
+  line-height:27px;
+}
+
+#search_button_div {
+  position: absolute;
+  top: 405%;
+  left: 45%;
+}
+
+#stylist_box {
+  border: dashed;
+  border-color: #294b7e;
+  width: 500px;
+  position: relative;
+  top: inherit;
+  left: 30%;
+}
+
+#profile_pic_box {
+  width: 225px;
+  height: 225px;
+  margin: 25px;
+  position: absolute;
+  top: 11%;
+  #border: 1px solid #f5f5ff;
+}
+
+#profile_pic_box img {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  display: block;
+}
+
+#profile_pic_box_small {
+  width: 150px;
+  height: 150px;
+  margin: 25px;
+  #border: 1px solid #f5f5ff;
+}
+
+#profile_pic_box_small img {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  display: block;
+}
+
+#nearby_stylist_name {
+  font-size: 22px;
+  position: absolute;
+  left: 40%;
+  top: 10%;
+  font-family: Georgia, Times, "Times New Roman", serif;
+  font-weight: bold;
+  color: #a51810;
+}
+
+#nearby_stylist_salon {
+  position: absolute;
+  left: 40%;
+  top: 30%;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#nearby_stylist_address {
+  position: absolute;
+  left: 42%;
+  top: 55%;
+}
+
+#nearby_stylist_city_state {
+  position: absolute;
+  left: 42%;
+  top: 64%;
+}
+
+#business_hours_box {
+  width: 375px;
+  height: 350px;
+  #border: dotted;
+  #border-color: #294b7e;
+  position: absolute;
+  top: 14%;
+  left: 65%;
+}
+
+#hours_title {
+  position: absolute;
+  left: 35%;
+  font-weight: bold;
+}
+
+#hours_button {
+  position: absolute;
+  left: 80%;
+}
+
+#stylist_info_box {
+  #border: dotted;
+  #border-color: #d92121;
+  width: 720px;
+  height: 450px;
+}
+
+#full_name {
+  max-width:350px;
+  white-space:nowrap;
+  overflow:scroll;
+  font-size: 25px;
+  font-weight: bold;
+  position: absolute;
+  left: 25%;
+  top: 13%;
+}
+
+#salon {
+  max-width:240px;
+  white-space:nowrap;
+  overflow:scroll;
+  font-size: 18px;
+  #font-weight: bold;
+  position: absolute;
+  left: 25%;
+  top: 17.5%;
+}
+
+#address {
+  max-width:230px;
+  white-space:nowrap;
+  overflow:scroll;
+  position: relative;
+  left: 4%;
+  top: 61%;
+}
+
+#city {
+  max-width:200px;
+  white-space:nowrap;
+  overflow:scroll;
+  position: relative;
+  left: 4%;
+  top: 55%;
+}
+
+#state {
+  max-width:30px;
+  white-space:nowrap;
+  overflow:scroll;
+  position: relative;
+  left: 4%;
+  top: 49%;
+}
+
+#bio {
+  position: absolute;
+  left: 25%;
+  top: 28%;
+  border: none;
+  resize: none;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+#phone_num {
+  max-width:100px;
+  white-space:nowrap;
+  overflow:scroll;
+  position: relative;
+  left: 4%;
+  top: 41%;
+}
+
+#deals_box {
+  position: absolute;
+  left: 65%;
+  top: 62%;
+  #border-style: dotted;
+  #border-color: #eb9316;
+}
+
+#deals_title {
+  position: absolute;
+  left: 43%;
+  font-weight: bold;
+  #font-size: 15px;
+}
+
+#deals {
+  border: none;
+  resize: none;
+  font-weight: bold;
+  font-size: 15px;
+  font-color: #d92121;;
+}
+
+#prepare_email {
+  position: absolute;
+  left: 35%;
+  top: 22%;
+}
+
+#go_to_gallery {
+  position: absolute;
+  left: 25%;
+  top: 22%;
+}
+
+#add_review {
+  position: absolute;
+  left: 42%;
+  top: 22%;
+}
+
+#email_stuff {
+  resize: none;
+}
+
+#sender_button {
+  position: absolute;
+  left: 37%;
+}
+
+#carousel_container {
+  position: absolute;
+  left: 90%;
+  border-style: dotted;
+  border-color: #38eb2c;
+}
+
+#gallery_title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#reviews_box {
+  width: 615px;
+  #border: dashed;
+  #border-color: #eb9316;
+  position: inherit;
+  left: 4%;
+  #top: 60%;
+}
+
+#reviews_title {
+  font-weight: bold;
+  text-align: center;
+  #text-size: 20px;
+}

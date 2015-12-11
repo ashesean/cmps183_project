@@ -1,0 +1,35 @@
+{{extend 'layout.html'}}
+
+
+&nbsp;&nbsp;Send {{=stylist.full_name}} an email! <br><br>
+<input id="sender_name" type="text" placeholder="Enter your name"> <br><br>
+
+<textarea id="email_stuff" rows="15" cols="70" placeholder="Write a message"></textarea>
+
+<br>
+
+<button id="sender_button" onclick="send_it({{=stylist.user_id}})">Send</button>
+
+
+<script>
+    function send_it(user_id) {
+        var sender = document.getElementById("sender_name").value;
+        var content = document.getElementById("email_stuff").value;
+
+        $.ajax("{{=URL('default', 'send_an_email')}}",
+                {
+                    data: {
+                        user_id: user_id,
+                        sender_name: sender,
+                        email_stuff: content
+                    },
+                    method: 'POST',
+                    success: function() {
+                        window.history.go(-1);
+                    },
+                    error: function() {}
+                }
+        );
+    }
+</script>
+
